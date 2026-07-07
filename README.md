@@ -31,6 +31,22 @@ Both models are loaded and executed on the client side, which means the applicat
 
 ---
 
+## About the Dataset and Model
+
+The detection model was not trained as part of this project. It was provided as a pre-trained model by Dicoding, trained using **Google Teachable Machine** — a browser-based tool that lets anyone train an image classification model without writing code.
+
+The training process works like this:
+
+1. Photos of each vegetable are collected and grouped by label (e.g. a folder of carrot photos, a folder of potato photos, and so on).
+2. Teachable Machine uses those photos to train a neural network that learns the visual differences between categories.
+3. The trained model is exported in TensorFlow.js format — three files: `model.json` (the network structure), `weights.bin` (the learned parameters), and `metadata.json` (the list of class labels).
+
+Those three files sit in `public/model/` and are loaded directly in the browser at runtime. Nothing is sent to a server.
+
+**Why accuracy is limited:** The model was trained on a relatively small and controlled dataset. Detection works best when the vegetable is well-lit, centered in the frame, and placed against a plain background. In cluttered or low-light conditions the model may misidentify the object — this is expected behavior for a model of this scale.
+
+---
+
 ## Supported Vegetables
 
 The detection model was trained to recognize the following 18 classes:
